@@ -19,7 +19,7 @@ pipeline{
                 }
             }
         }
-        stage('update image to ecs'){
+        stage('update images to ecs'){
             steps{
                 sh "aws ecs update-service --cluster teamwork --service  devops --force-new-deployment"
 
