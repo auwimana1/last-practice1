@@ -46,7 +46,7 @@ pipeline{
             steps{
                 script{
                 // This step should not normally be used in your script. Consult the inline help for details.
-                    withDockerRegistry(credentialsId: 'CRED_ID', url: 'https://${ECR_REPO_URL}/') {
+                    withDockerRegistry(credentialsId: CRED_ID, url: 'https://${ECR_REPO_URL}/') {
                     sh "docker push ${ECR_REPO_URL}/${ECR_APP_NAME}:${params.KOSSI}"
                     sh "docker push ${ECR_REPO_URL}/${ECR_APP_NAME}:latest"
 }
