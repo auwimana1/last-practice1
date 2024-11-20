@@ -20,7 +20,7 @@ pipeline{
 
         stage('Scan files'){
             steps{
-                sh "trivy fs --format table -o adedidthat.html"
+                sh "trivy fs --format table -o adedidthat.html ."
             }
         }
 
