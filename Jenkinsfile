@@ -7,7 +7,7 @@ pipeline{
 
     environment{
         ECR_REPO_URL='557195342730.dkr.ecr.us-east-1.amazonaws.com' //THIS VARIABLE IS FOR MY ECR REPOSITORY
-        APP_NAME='adedidthat' // THIS VARIABLE IS USED TO AS A NAME OF MY IMAGE TO MY CURRENT DOCKER (EC2 INSTANCE)
+        APP_NAME='wedidit' // THIS VARIABLE IS USED TO AS A NAME OF MY IMAGE TO MY CURRENT DOCKER (EC2 INSTANCE)
         ECR_APP_NAME='wedidit'// THIS VARIABLE IS USED TO GIVE THE NEW NAME IMAGE IN ECR
         CRED_ID='ecr:us-east-1:Adelina_IAM' //THIS VARIABLE IS FOR MY AWS CREDENTIAL PUT IN JENKINS
         ECS_CLUSTER_NAME='Dev-ecs-cluster' //MY ECS CLUSTER NAME
@@ -37,7 +37,7 @@ pipeline{
 
         stage('Scan image'){
             steps{
-                sh "trivy image --format table -o docker_image_adedidthat.html ${ECR_REPO_URL}/${APP_NAME}:latest"
+                sh "trivy image --format table -o docker_image_adedidthat.html ${ECR_REPO_URL}/${ECR_APP_NAME}:latest"
             }
         }
 
