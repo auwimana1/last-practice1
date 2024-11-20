@@ -35,11 +35,11 @@ pipeline{
         }
 
 
-        // stage('Scan image'){
-        //     steps{
-        //         sh "trivy image --format table -o docker_image_adedidthat.html ${ECR_REPO_URL}/${ECR_APP_NAME}:latest"
-        //     }
-        // }
+        stage('Scan image'){
+             steps{
+             sh "trivy image --format table -o docker_image_adedidthat.html ${ECR_REPO_URL}/${ECR_APP_NAME}:latest"
+            }
+        }
 
 
         stage('Push ECR'){
