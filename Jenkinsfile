@@ -21,7 +21,7 @@ pipeline{
         stage('sonar scan'){
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'mySonarQube') {
+                    withSonarQubeEnv('mySonarQube') {
                     sh "echo i am sonar"
                 
                 }
