@@ -18,12 +18,21 @@ pipeline{
 
     stages{
 
-        stage('Scan files'){
+        stage ('sonar scan'){
             steps{
-                sh "trivy fs --format table -o adedidthat.html ."
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonarq-cred') {
+                    sh "echo i am sonar"
+                
+                }
             }
         }
-
+        
+        stage('Scan files'){
+            steps{
+            sh "trivy fs --format table -o adedidthat.html ."
+            }
+        }
 
         stage('Build image'){
             steps{
