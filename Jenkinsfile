@@ -18,7 +18,7 @@ pipeline{
 
     stages{
 
-        stage ('sonar scan'){
+        stage('sonar scan'){
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonarq-cred') {
@@ -26,6 +26,7 @@ pipeline{
                 
                 }
             }
+        }
         }
         
         stage('Scan files'){
