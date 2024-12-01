@@ -7,6 +7,7 @@ pipeline{
 
     environment{
         ECR_REPO_URL='557195342730.dkr.ecr.us-east-1.amazonaws.com' //THIS VARIABLE IS FOR MY ECR REPOSITORY
+        SONAR_NAME='adedidthat' // NAME IN MY SONAR QUBE PROJECT
         APP_NAME='wedidit' // THIS VARIABLE IS USED TO AS A NAME OF MY IMAGE TO MY CURRENT DOCKER (EC2 INSTANCE)
         ECR_APP_NAME='wedidit'// THIS VARIABLE IS USED TO GIVE THE NEW NAME IMAGE IN ECR
         CRED_ID='ecr:us-east-1:Adelina_IAM' //THIS VARIABLE IS FOR MY AWS CREDENTIAL PUT IN JENKINS
@@ -23,12 +24,19 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonarq-cred') {
-                    sh "echo I am sonar"
-                    
+                    echo "${SONAR_SCANNER}"
+
+                    sh "
+                    ${SONAR_SCANNER}/bin/sonar-scanner \
+                    -Dsonar.projectKey=${SONAR_NAME} \
+                    -Dsonar.sources= . \
+                    -Dsonar.projectName=${SONAR_NAME} \
+                    -Dsonar.java.binaries=. 
+                    "
                 }
             }
         }
-        }
+    }
         
         stage('Scan files'){
             steps{
