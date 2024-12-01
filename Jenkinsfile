@@ -26,13 +26,13 @@ pipeline{
                     withSonarQubeEnv(credentialsId: 'sonarq-cred') {
                     echo "${SONAR_SCANNER}"
 
-                    sh "
+                    sh'''
                     ${SONAR_SCANNER}/bin/sonar-scanner \
                     -Dsonar.projectKey=${SONAR_NAME} \
                     -Dsonar.sources=. \
                     -Dsonar.projectName=${SONAR_NAME} \
                     -Dsonar.java.binaries=. 
-                    "
+                    '''
                 }
             }
         }
