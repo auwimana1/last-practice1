@@ -1,39 +1,40 @@
-version: '3.9'
-services: 
 
-wordpress_app:
+services:
+
+  wordpress_app:
     image: wordpress:4.9.4-php7.2-apache
     container_name: wordpress_web
-    environment: 
-      - WORDPRESS_DB_HOST=mariadb_host
-      - WORDPRESS_DB_USER=adedb_user
-      - WORDPRESS_DB_PASSWORD=hello123
-      - WORDPRESS_DB_NAME=wpress_db
+    environment:
+      WORDPRESS_DB_HOST: mariadb_host
+      WORDPRESS_DB_USER: db_user
+      WORDPRESS_DB_PASSWORD: enara22
+      WORDPRESS_DB_NAME: wordpress_db
     ports:
-      - 8082:80
+      - "8082:80"
     volumes:
       - wordpress_app:/var/www/html
     networks:
-      - my_netwk_wdpress
+      - my_netwk_wordpress
+    depends_on:
+      - mariadb_host
 
-
-mariadb_host:
+  mariadb_host:
     image: mariadb:10.4.12
-    container_name: mariadb_host
+    container_name: mariadb_db
     environment:
-      - MYSQL_ROOT_PASSWORD=hello123
-      - MYSQL_DATABASE=wpress_db
-      - MYSQL_USER=adedb_user
-      - MYSQL_PASSWORD=hello123
+      MYSQL_ROOT_PASSWORD: enara22
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: enara22
     volumes:
       - db_data:/var/lib/mysql
-
+    networks:
+      - my_netwk_wordpress
 
 volumes:
   wordpress_app:
+  db_data:
 
-networks: 
-  my_netwk_wdpress:
-    drive: 'bridge'
-
-  
+networks:
+  my_netwk_wordpress:
+    driver: bridge
