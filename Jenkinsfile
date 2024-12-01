@@ -29,7 +29,7 @@ pipeline{
                     sh "
                     ${SONAR_SCANNER}/bin/sonar-scanner \
                     -Dsonar.projectKey=${SONAR_NAME} \
-                    -Dsonar.sources= . \
+                    -Dsonar.sources=. \
                     -Dsonar.projectName=${SONAR_NAME} \
                     -Dsonar.java.binaries=. 
                     "
