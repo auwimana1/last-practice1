@@ -61,7 +61,7 @@ pipeline{
         }
 
 
-        stage('Pushes ECR'){
+        stage('Push ECR'){
             steps{
                 script{
                 // This step should not normally be used in your script. Consult the inline help for details.
