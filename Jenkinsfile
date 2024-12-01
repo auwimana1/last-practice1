@@ -24,11 +24,7 @@ pipeline{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonarq-cred') {
                     sh "echo I am sonar"
-                    sh '''
-                    ${SONAR_SCANNER}/bin/sonar-scanner
-                    -Dsonar.projectkey=${APP_NAME}
-
-                    '''
+                    
                 }
             }
         }
