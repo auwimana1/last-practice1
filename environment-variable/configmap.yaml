@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-worpdress
+  labels:
+    app: wordpress
+data:
+  data_host: "mysql-db" 
+  db_user: "adedb_user"
+  db_name: "wpress_db"
+
+  
