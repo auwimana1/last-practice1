@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-volume
+spec:
+  containers:
+    - name: mysql-pv
+      image: mysql
+      volumeMounts:
+        - name: mysql-pv
+          mountPath: /var/lib/mysq
+      env:
+        - name: MYSQL_USER
+          value: revision
+        - name: MYSQL_DATABASE
+          value: revisiontimedb
+        - name: MYSQL_PASSWORD
+          value: revision
+        - name: MYSQL_ROOT_PASSWORD
+          value: dbpasswd
+  volumes:
+    - name: mysql-pv
+      hostPath:
+        path: /data-volume
+
+

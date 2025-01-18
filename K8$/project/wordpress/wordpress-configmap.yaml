@@ -1,0 +1,9 @@
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: wordpress-cm
+data: 
+    # key=value an example would be wordpree_db_host: 
+  WORDPRESS_DB_HOST: "mysql-svc"
+  WORDPRESS_DB_NAME: "adedb"
+

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-web-rep
+  labels:
+    app: my-web
+
+spec:
+ selector:
+  matchLabels:
+    app: my-web-app
+    tier: frontend
+ template:
+  metadata:
+    name: my-webserver
+    labels:
+      app: my-web-app
+      tier: frontend
+  spec:
+    containers:
+    - name: c1
+      image: httpd
+      ports:
+      - containerPort: 80
+ replicas: 6

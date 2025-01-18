@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: generator
+  name: generator
+spec:
+  containers:
+  - image: alpine
+    command: ["/bin/sh", "-c"] 
+    args: ["shuf -i 0-100 -n 1 >> /opt/adelina.txt"] 
+    name: generator
+    volumeMounts:
+      - mountPath: /opt 
+        name: data-volume
+
+  volumes:
+  - name: data-volume
+    hostPath:
+      path: /data
+      type: Directory
+
+
+    
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

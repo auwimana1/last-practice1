@@ -7,7 +7,7 @@ services:
     environment:
       WORDPRESS_DB_HOST: mariadb_host
       WORDPRESS_DB_USER: db_user
-      WORDPRESS_DB_PASSWORD: enara22
+      WORDPRESS_DB_PASSWORD: ade2025
       WORDPRESS_DB_NAME: wordpress_db
     ports:
       - "8082:80"
@@ -22,10 +22,10 @@ services:
     image: mariadb:10.4.12
     container_name: mariadb_db
     environment:
-      MYSQL_ROOT_PASSWORD: enara22
+      MYSQL_ROOT_PASSWORD: ade2025
       MYSQL_DATABASE: wordpress_db
       MYSQL_USER: db_user
-      MYSQL_PASSWORD: enara22
+      MYSQL_PASSWORD: ade2025
     volumes:
       - db_data:/var/lib/mysql
     networks:

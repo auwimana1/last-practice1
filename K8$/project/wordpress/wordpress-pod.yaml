@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: wordpress-app
+  name: wordpress-pod
+spec:
+  containers:
+  - image: wordpress
+    name: wordpress-container
+    ports:
+      - containerPort: 80
+    env:
+      - name: WORDPRESS_DB_HOST 
+        valueFrom:  # name of the service
+          configMapKeyRef:
+            key: WORDPRESS_DB_HOST
+            name: wordpress-cm
+
+        name: WORDPRESS_DB_USER
+        valueFrom:
+          secretKeyRef:
+            key: WORDPRESS_DB_USER
+            name: app-secret
+
+        name: WORDPRESS_DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: WORDPRESS_DB_PASSWORD
+            name: app-secret
+          
+        name: WORDPRESS_DB_NAME
+        valueFrom:
+          configMapKeyRef:
+            key: WORDPRESS_DB_NAME
+            name: wordpress-cm
+    volumeMounts:
+      - mountPath: /var/www/html
+        name: data-volume
+
+  volumes:
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: wordpress-pvc
+
+
